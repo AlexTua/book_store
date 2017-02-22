@@ -6,7 +6,6 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rails', '~> 5.0.1'
-gem 'sqlite3'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -16,7 +15,10 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass'
 gem 'haml'
-gem "haml-rails", "~> 0.9"
+gem 'haml-rails', '~> 0.9'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
@@ -28,6 +30,7 @@ gem "haml-rails", "~> 0.9"
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'sqlite3'
 end
 
 group :test do
@@ -44,6 +47,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :production do
+  gem 'pg'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
