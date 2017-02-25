@@ -6,7 +6,7 @@ Category.create(title: "Web design")
 Category.create(title: "Web development")
 
 Category.find_each do |category|
-  16.times do |n|
+  rand(7..16).times do |n|
     book = Book.create(category: category, title: FFaker::Book.title, price: rand(1..99), 
       quantity: rand(50..200))
     rand(1..3).times do |n|
