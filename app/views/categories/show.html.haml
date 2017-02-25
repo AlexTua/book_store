@@ -15,13 +15,13 @@
             %a{href: "#"} Price: Low to hight
           %li
             %a{href: "#"} Price: Low to hight
-    %ul.list-inline.pt-10.mb-25.mr-240
+    %ul.list-inline.pt-10.mb-25.mr-240.categories-list
       %li.mr-35
         %a.filter-link{href: "#"}
           All
           %span.badge.general-badge 135
       - @categories.each do |category|
-        %li.mr-35
+        %li.mr-35{:class => "#{"active" if @category == category}"}
           = link_to category_path(category), class: "filter-link" do
             = category.title
             %span.badge.general-badge= category.books.count

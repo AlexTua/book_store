@@ -19,6 +19,7 @@ gem 'haml-rails', '~> 0.9'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'ffaker'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
@@ -37,7 +38,6 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
-  gem 'ffaker'
 end
 
 group :development do

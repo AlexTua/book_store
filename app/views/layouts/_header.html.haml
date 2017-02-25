@@ -36,12 +36,10 @@
           %li.dropdown
             %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} Home
             %ul.dropdown-menu
-              %li
-                %a{href: "#"} Mobile development
-              %li
-                %a{href: "#"} Photo
-              %li
-                %a{href: "#"} Web design
+              - Category.find_each do |category|
+                %li
+                  %a{href: "#"} 
+                    = category.title
             %li
               = link_to 'Shop', category_path(1)
           - if user_signed_in?

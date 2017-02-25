@@ -555,6 +555,14 @@
   }
 }
 
+//Custom
+
+.categories-list {
+  li.active a {
+    color: black
+  }
+}
+
 @media (min-width: $grid-float-breakpoint) {
   .navbar-nav {
     float: right;
