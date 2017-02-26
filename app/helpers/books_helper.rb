@@ -4,7 +4,7 @@ module BooksHelper
     book.authors.each do |author| 
       authors << "#{author.first_name} #{author.last_name}" 
     end
-    authors.join(',')
+    authors.join(', ')
   end
 
   def price_in_currency(book)

@@ -36,9 +36,9 @@
           %li.dropdown
             %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} Home
             %ul.dropdown-menu
-              - Category.find_each do |category|
+              - categories_list.each do |category|
                 %li
-                  %a{href: "#"} 
+                  = link_to root_path(category: category.id) do
                     = category.title
             %li
               = link_to 'Shop', category_path(1)

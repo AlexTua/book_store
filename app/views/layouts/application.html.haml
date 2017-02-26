@@ -10,8 +10,9 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     = render 'layouts/header'
-    %p.notice= notice
-    %p.alert= alert
+    - if flash.any?
+      %p.notice= notice
+      %p.alert= alert
     = yield
     = render 'layouts/footer'
   %script{src: "https://use.fontawesome.com/67602d7308.js"}

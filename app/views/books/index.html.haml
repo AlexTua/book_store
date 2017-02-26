@@ -16,12 +16,12 @@
           %li
             %a{href: "#"} Price: Low to hight
     %ul.list-inline.pt-10.mb-25.mr-240.categories-list
-      %li.mr-35
+      %li.mr-35.active
         = link_to books_path, class: "filter-link" do
           All
           %span.badge.general-badge= books_list.count
       - categories_list.each do |category|
-        %li.mr-35{:class => "#{"active" if @category == category}"}
+        %li.mr-35
           = link_to category_path(category), class: "filter-link" do
             = category.title
             %span.badge.general-badge= category.books.count
@@ -56,7 +56,7 @@
           %a{href: "#"} Price: Low to hight
   .mb-120
     .row
-      - @category.books.find_in_batches(batch_size: 4) do |book_line|
+      - books_list.find_in_batches(batch_size: 4) do |book_line|
         = render partial: "shared/book_inline", locals: {books: book_line}
     .text-center
       %button.btn.btn-primary View More
