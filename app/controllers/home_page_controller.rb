@@ -1,10 +1,6 @@
 class HomePageController < ApplicationController
   def index
-    @category = if params.include?(:category)
-                  Category.find(params[:category])
-                else
-                  Category.find_by_title(Category::HOME_GATEGORY)
-                end
+    @category = Category.home_page_category(params)
   end
 
   def documentation
