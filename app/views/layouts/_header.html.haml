@@ -41,7 +41,7 @@
                   = link_to root_path(category: category.id) do
                     = category.title
             %li
-              = link_to 'Shop', category_path(1)
+              = link_to 'Shop', books_path
           - if user_signed_in?
             %li.dropdown
               %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} My account

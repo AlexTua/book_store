@@ -3,7 +3,7 @@ class Category < ApplicationRecord
   
   validates :title, presence: true, uniqueness: true
 
-  HOME_GATEGORY = "Mobile development"
+  HOME_GATEGORY = "Mobile development".freeze
 
   def self.home_page_category(params)
     return Category.find(params[:category]) if params.include?(:category)
