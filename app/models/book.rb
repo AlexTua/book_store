@@ -8,4 +8,8 @@ class Book < ApplicationRecord
 
   scope :sorted_by, ->(category) { where(category: category) }
   scope :latest, -> { order(created_at: :desc) }
+  scope :title_asc, -> { order(title: :asc) }
+  scope :title_desc, -> { order(title: :desc) }
+  scope :low_price, -> { order(price: :asc) }
+  scope :high_price, -> { order(price: :desc) }
 end

@@ -57,6 +57,6 @@
   .mb-120
     .row
       - books_list.find_in_batches(batch_size: 4) do |book_line|
-        = render partial: "shared/book_inline", locals: {books: book_line}
+        = render partial: "shared/books_inline", locals: {books: book_line}
     .text-center
       %button.btn.btn-primary View More
