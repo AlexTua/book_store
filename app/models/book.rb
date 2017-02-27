@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
-  belongs_to :category
+  has_and_belongs_to_many :category
   has_and_belongs_to_many :authors
 
   validates :title, :price, :quantity, presence: true
@@ -9,7 +9,6 @@ class Book < ApplicationRecord
   SORT_TITLES = {:latest => "Newest first", :title_asc => "A - Z", :title_desc => "Z - A",
                  :low_price => "Price: low to high", :high_price => "Price: high to low"}.freeze
 
-  scope :sorted_by, ->(category) { where(category: category) }
   scope :latest, -> { order(created_at: :desc) }
   scope :title_asc, -> { order(title: :asc) }
   scope :title_desc, -> { order(title: :desc) }

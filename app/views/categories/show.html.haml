@@ -4,7 +4,7 @@
     .pull-right
       .dropdown
         %a.dropdown-toggle.dropdown-btn.width-240{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-          = @sort_title
+          = sort_title
           %i.fa.fa-angle-down.dropdown-icon
         %ul.dropdown-menu
           %li
@@ -20,10 +20,6 @@
           %li
             = link_to "Price: low to high", category_path(@category, sort_type: :low_price)
     %ul.list-inline.pt-10.mb-25.mr-240.categories-list
-      %li.mr-35
-        = link_to books_path, class: "filter-link" do
-          All
-          %span.badge.general-badge= books_list.count
       - categories_list.each do |category|
         %li.mr-35{:class => "#{"active" if @category == category}"}
           = link_to category_path(category), class: "filter-link" do
