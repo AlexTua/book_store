@@ -6,6 +6,9 @@ class Book < ApplicationRecord
   validates :price, numericality: { greater_than: 0 }
   validates :quantity, numericality: { greater_than_or_equal_to: 0 }
 
+  SORT_TITLES = {:latest => "Newest first", :title_asc => "A - Z", :title_desc => "Z - A",
+                 :low_price => "Price: low to high", :high_price => "Price: high to low"}.freeze
+
   scope :sorted_by, ->(category) { where(category: category) }
   scope :latest, -> { order(created_at: :desc) }
   scope :title_asc, -> { order(title: :asc) }

@@ -1,10 +1,7 @@
 class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
-    if params.include?(:sort_with)
-      @sorted_books = @category.books.send(params[:sort_with]).all
-    else
-      @sorted_books = @category.books.title_asc
-    end
+    @sorted_books = SortBooksService.new(params, @category).sort_books
+    @sort_title = SortBooksService.new(params).choose_title
   end
 end
