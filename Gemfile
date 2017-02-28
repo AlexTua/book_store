@@ -33,6 +33,7 @@ gem 'kaminari'
 group :development, :test do
   gem 'rspec-rails'
   gem 'sqlite3'
+  gem 'foreman'
 end
 
 group :test do
