@@ -2,9 +2,12 @@ class Book < ApplicationRecord
   has_and_belongs_to_many :category
   has_and_belongs_to_many :authors
 
+  before_save { self.materials = materials.downcase.capitalize.gsub(/,(?![ ])/, ', ') }
+
   validates :title, :price, :quantity, presence: true
   validates :price, numericality: { greater_than: 0 }
   validates :quantity, numericality: { greater_than_or_equal_to: 0 }
+  validates :year, numericality: { less_than_or_equal_to: Time.current.year }
 
   SORT_TITLES = {:latest => "Newest first", :title_asc => "A - Z", :title_desc => "Z - A",
                  :low_price => "Price: low to high", :high_price => "Price: high to low"}.freeze

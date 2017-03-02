@@ -10,7 +10,6 @@ class RegistrationsController < Devise::RegistrationsController
   end
   
   def after_update_path_for(resource)
-    Rails.logger.debug("My object: #{params.inspect}")
-    edit_user_registration_path()
+    edit_user_registration_path(tab: params[:tab])
   end
 end
