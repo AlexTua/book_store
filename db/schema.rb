@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302180016) do
+ActiveRecord::Schema.define(version: 20170302183047) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "authors", force: :cascade do |t|
     t.string   "first_name"
@@ -22,8 +25,8 @@ ActiveRecord::Schema.define(version: 20170302180016) do
   create_table "authors_books", id: false, force: :cascade do |t|
     t.integer "book_id",   null: false
     t.integer "author_id", null: false
-    t.index ["author_id", "book_id"], name: "index_authors_books_on_author_id_and_book_id"
-    t.index ["book_id", "author_id"], name: "index_authors_books_on_book_id_and_author_id", unique: true
+    t.index ["author_id", "book_id"], name: "index_authors_books_on_author_id_and_book_id", using: :btree
+    t.index ["book_id", "author_id"], name: "index_authors_books_on_book_id_and_author_id", unique: true, using: :btree
   end
 
   create_table "books", force: :cascade do |t|
@@ -36,13 +39,14 @@ ActiveRecord::Schema.define(version: 20170302180016) do
     t.integer  "year"
     t.text     "materials"
     t.text     "dimensions"
+    t.json     "pictures"
   end
 
   create_table "books_categories", id: false, force: :cascade do |t|
     t.integer "book_id",     null: false
     t.integer "category_id", null: false
-    t.index ["book_id", "category_id"], name: "index_books_categories_on_book_id_and_category_id", unique: true
-    t.index ["category_id", "book_id"], name: "index_books_categories_on_category_id_and_book_id"
+    t.index ["book_id", "category_id"], name: "index_books_categories_on_book_id_and_category_id", unique: true, using: :btree
+    t.index ["category_id", "book_id"], name: "index_books_categories_on_category_id_and_book_id", using: :btree
   end
 
   create_table "categories", force: :cascade do |t|
@@ -64,8 +68,8 @@ ActiveRecord::Schema.define(version: 20170302180016) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
 end

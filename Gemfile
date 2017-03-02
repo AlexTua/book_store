@@ -13,6 +13,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'pg'
 gem 'bootstrap-sass'
 gem 'haml'
 gem 'haml-rails', '~> 0.9'
@@ -21,6 +22,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'ffaker'
 gem 'kaminari'
+gem 'carrierwave'
+gem 'mini_magick'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
@@ -32,7 +35,6 @@ gem 'kaminari'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'sqlite3'
   gem 'foreman'
 end
 
@@ -50,10 +52,5 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
-
-group :production do
-  gem 'pg'
-end
-
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

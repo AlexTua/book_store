@@ -6,6 +6,8 @@ class Book < ApplicationRecord
   has_and_belongs_to_many :category
   has_and_belongs_to_many :authors
 
+  mount_uploaders :pictures, PictureUploader
+
   validates :title, :price, :quantity, presence: true
   validates :price, numericality: { greater_than: 0 }
   validates :quantity, numericality: { greater_than_or_equal_to: 0 }
@@ -21,6 +23,6 @@ class Book < ApplicationRecord
   scope :high_price, -> { order(price: :desc) }
 
   def in_stock?
-    quantity == 0
+    quantity > 0
   end
 end
