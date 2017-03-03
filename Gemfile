@@ -26,6 +26,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'rails_admin', '~> 1.0'
 gem 'cancancan'
+gem "figaro"
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
@@ -34,6 +35,7 @@ gem 'cancancan'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'rails_12factor', group: :production
 
 group :development, :test do
   gem 'rspec-rails'
