@@ -1,5 +1,7 @@
 require 'ffaker'
 
+User.create(email: "admin@admin.com", password: "Admin111", password_confirmation: "Admin111", admin: true)
+
 Category.create(title: "All books")
 Category.create(title: "Mobile development")
 Category.create(title: "Photo")

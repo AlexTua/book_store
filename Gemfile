@@ -24,6 +24,8 @@ gem 'ffaker'
 gem 'kaminari'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'rails_admin', '~> 1.0'
+gem 'cancancan'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
