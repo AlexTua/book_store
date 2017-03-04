@@ -563,6 +563,24 @@
   }
 }
 
+.rate-checker {
+  &:checked ~ .rate-star,
+  &:checked {
+    .fa-star {
+      color: $gold-500
+    }
+  }
+}
+
+.rate-star {
+  &:hover ~ .rate-star,
+  &:hover {
+    .fa-star {
+      color: $gold-500
+    }
+  }
+}
+
 @media (min-width: $grid-float-breakpoint) {
   .navbar-nav {
     float: right;

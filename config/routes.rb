@@ -8,4 +8,5 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:show], path: 'catalog'
   resources :books, only: [:show]
+  resources :reviews, only: [:create]
 end
