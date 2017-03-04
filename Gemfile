@@ -27,7 +27,8 @@ gem 'mini_magick'
 gem 'rails_admin', '~> 1.0'
 gem 'cancancan'
 gem "figaro"
-
+gem 'aasm'
+gem 'rails_admin_aasm'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
