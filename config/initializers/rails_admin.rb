@@ -10,7 +10,7 @@ RailsAdmin.config do |config|
 
   config.authorize_with :cancan 
 
-  config.included_models = ["Review", "User", "Author", "Book", "Category"]
+  config.included_models = ["Review", "User", "Author", "Book", "Category", "Order", "OrderItem"]
   ## == Cancan ==
   # config.authorize_with :cancan
 
@@ -29,7 +29,9 @@ RailsAdmin.config do |config|
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
-    new
+    new do
+      except [Review]
+    end
     export
     bulk_delete
     show

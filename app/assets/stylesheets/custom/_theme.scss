@@ -212,6 +212,7 @@
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 20px;
+  background-color: transparent;
   &:hover {
     background-color: $grey-200;
     .thumb-icon {
@@ -556,7 +557,14 @@
 }
 
 //Custom
+.not-active {
+   pointer-events: none;
+   cursor: default;
+}
 
+#new_order_item {
+  display: inline;
+}
 .categories-list {
   li.active a {
     color: black

@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   resources :categories, only: [:show], path: 'catalog'
   resources :books, only: [:show]
   resources :reviews, only: [:create]
+  resource :cart, only: [:show]
+  resources :order_items, only: [:create, :update, :destroy]
 end
