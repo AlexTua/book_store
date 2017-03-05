@@ -13,7 +13,7 @@
                 = image_tag book.picture.thumb, class: 'img-shadow general-thumbnail-img width-full', alt: "design-book"
             .col-sm-7
               .mb-60
-                %h1= book.title
+                %h1= link_to "#{book.title}", book
                 %p.lead= book.description
                 %p.in-grey-600.small= book_authors(book)
                 .general-align.pt-20
