@@ -557,9 +557,21 @@
 }
 
 //Custom
+.fa-minus {
+   &:hover {
+    color: black;
+  }
+}
+
 .not-active {
    pointer-events: none;
    cursor: default;
+}
+
+.fa-plus {
+   &:hover {
+    color: black;
+  }
 }
 
 #new_order_item {
