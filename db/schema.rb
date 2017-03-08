@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20170306213334) do
     t.datetime "updated_at",   null: false
     t.integer  "order_id"
     t.string   "country"
-    t.string   "type"
+    t.string   "address_type"
   end
 
   create_table "authors", force: :cascade do |t|
