@@ -6,7 +6,6 @@ class OrderItemsController < ApplicationController
     if @order.valid?
       @order.save 
       session[:order_id] = @order.id
-      cahnge_book_quantity(-@order_item.quantity)
     end
   end
 
@@ -23,7 +22,6 @@ class OrderItemsController < ApplicationController
 
   def destroy
     @order_item = current_order.order_items.find(params[:id])
-    cahnge_book_quantity(@order_item.quantity)
     @order_item.destroy
     redirect_to cart_path, notice: "Item deleted."
   end
@@ -34,13 +32,9 @@ class OrderItemsController < ApplicationController
     params.require(:order_item).permit(:quantity, :book_id)
   end
 
-  def cahnge_book_quantity(int)
+  def update_order_items(int)
     @order_item.book.quantity += int
     @order_item.book.save
-  end
-
-  def update_order_items(int)
-    cahnge_book_quantity(int)
     @order_item.update(order_item_params) 
     redirect_to cart_path, notice: "Item updated."
   end

@@ -2,6 +2,7 @@ class Order < ApplicationRecord
   before_save { self[:subtotal] = subtotal }
 
   has_many :order_items, dependent: :destroy
+  has_many :addresses
   belongs_to :user
 
   def subtotal
