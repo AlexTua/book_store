@@ -1,10 +1,11 @@
 class CheckoutsController < ApplicationController
   include Wicked::Wizard
 
+  before_action :authenticate_user!
+
   steps :address, :delivery, :payment, :confirm, :complete
 
   def show
-    @steps = steps
     @order = current_order
     render_wizard
   end
@@ -25,6 +26,10 @@ class CheckoutsController < ApplicationController
     when :payment
       save_or_update_card
       render_wizard @order.credit_card
+    when :confirm
+      @order.confirm
+      #session.delete(:order_id)
+      render_wizard @order
     end
   end
 
