@@ -40,32 +40,54 @@ RailsAdmin.config do |config|
     ## With an audit adapter, you can add:
     # history_index
     # history_show
-    config.model Book do
-      list do
-        configure :dimensions do
-          searchable false
-          filterable false
-          queryable false
-          sortable false
-        end
-      end
-    end
+  end
 
-    config.model Review do
-      list do
-        fields :title, :user, :book, :created_at, :rating
-        field :status, :state
+  config.model Book do
+    list do
+      configure :dimensions do
+        searchable false
+        filterable false
+        queryable false
+        sortable false
       end
-
-      edit do
-        fields :title, :content, :user, :book, :rating, :created_at
-        field :status, :state
-      end
-
-      state({
-      states: {unprocessed: 'btn-warning', approved: 'btn-success', rejected: 'btn-danger'},
-      events: {approve: 'btn-success', reject: 'btn-danger'}
-      })
     end
   end
+
+  config.model Review do
+    list do
+      fields :title, :user, :book, :created_at, :rating
+      field :status, :state
+    end
+
+    edit do
+      fields :title, :content, :user, :book, :rating, :created_at
+      field :status, :state
+    end
+
+    state({
+    states: {unprocessed: 'btn-warning', approved: 'btn-success', rejected: 'btn-danger'},
+    events: {approve: 'btn-success', reject: 'btn-danger'}
+    })
+  end
+=begin
+  config.model 'Address' do
+    visible false
+  end
+
+  config.model 'CreditCard' do
+    visible false
+  end
+
+  config.model 'OrderItem' do
+    visible false
+  end
+
+  config.model 'Delivery' do
+    visible false
+  end
+
+  config.model 'Users' do
+    visible false
+  end
+=end
 end
