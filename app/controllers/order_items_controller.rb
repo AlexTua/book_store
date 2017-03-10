@@ -23,6 +23,7 @@ class OrderItemsController < ApplicationController
   def destroy
     @order_item = current_order.order_items.find(params[:id])
     @order_item.destroy
+    current_order.save
     redirect_to cart_path, notice: "Item deleted."
   end
 
@@ -36,6 +37,7 @@ class OrderItemsController < ApplicationController
     @order_item.book.quantity += int
     @order_item.book.save
     @order_item.update(order_item_params) 
+    current_order.save
     redirect_to cart_path, notice: "Item updated."
   end
 
