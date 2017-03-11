@@ -58,6 +58,6 @@ class Order < ApplicationRecord
   private
 
   def update_total_price
-    self.total_price = subtotal - coupon + (delivery.nil? ? 0 : delivery.price)
+    self.total_price = subtotal - (coupon < subtotal ? coupon : 0) + (delivery.nil? ? 0 : delivery.price)
   end
 end

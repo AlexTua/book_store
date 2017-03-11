@@ -30,6 +30,7 @@ gem "figaro"
 gem 'aasm'
 gem 'rails_admin_aasm'
 gem 'wicked'
+gem 'rubocop', '~> 0.47.1', require: false
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
