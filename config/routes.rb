@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'orders/show'
-
-  get 'orders/index'
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :users, controllers: { registrations: 'registrations', 
@@ -15,6 +11,9 @@ Rails.application.routes.draw do
   resources :reviews, only: [:create]
   resource  :cart, only: [:show, :update]
   resources :order_items, only: [:create, :update, :destroy]
-  resources :orders, only: [:show, :index]
   resources :checkouts
+  resources :orders, only: [:show, :index]
+  resources :orders do
+    get 'continue_shopping', on: :member
+  end
 end

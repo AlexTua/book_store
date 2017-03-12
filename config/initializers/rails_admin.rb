@@ -10,7 +10,6 @@ RailsAdmin.config do |config|
 
   config.authorize_with :cancan 
 
-  config.included_models = ["Review", "User", "Author", "Book", "Category", "Order", "OrderItem", "Address", "Delivery", "CreditCard"]
   
   ## == Pundit ==
   # config.authorize_with :pundit
@@ -86,7 +85,7 @@ RailsAdmin.config do |config|
     events: {start_delivery: 'btn-success', finish_delivery: 'btn-success', cancel: 'btn-danger'}
     })
   end
-=begin
+
   config.model 'Address' do
     visible false
   end
@@ -106,5 +105,4 @@ RailsAdmin.config do |config|
   config.model 'Users' do
     visible false
   end
-=end
 end

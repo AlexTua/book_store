@@ -9,7 +9,7 @@ class CheckoutsController < ApplicationController
   def show
     @order = current_order
     Rails.logger.debug("My object: #{current_order.user.inspect}")
-    save_order_to_user unless @order.user
+    save_user_to_order unless @order.user
     if step == :complete
       CheckoutMailer.complete_email(current_user, @order).deliver_now
       session.delete(:order_id)
@@ -95,7 +95,7 @@ class CheckoutsController < ApplicationController
     end
   end 
 
-  def save_order_to_user
+  def save_user_to_order
     @order.user = current_user
     @order.save
   end
