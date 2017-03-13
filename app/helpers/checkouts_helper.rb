@@ -10,8 +10,9 @@ module CheckoutsHelper
   end
 
   def address_saved_value(type, field)
+    user_address = current_user.get_address(type)
     address = @order.get_address(type)
-    address[field] if address
+    address.try(:[], field) || user_address.try(:[], field)
   end
 
   def use_billing_address?

@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     sessions: 'sessions',
     omniauth_callbacks: "users/omniauth_callbacks" }
 
+  devise_scope :user do
+    put 'address_settings', to: 'registrations#address_settings'
+  end
+
   root    'home_page#index'
 
   resources :categories, only: [:show], path: 'catalog'
