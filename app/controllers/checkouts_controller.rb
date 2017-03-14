@@ -8,9 +8,9 @@ class CheckoutsController < ApplicationController
 
   def show
     @order = current_order
-    Rails.logger.debug("My object: #{current_order.user.inspect}")
     save_user_to_order unless @order.user
-    if step == :complete
+    set_current_step
+    if step == :complete && params[:skip]
       CheckoutMailer.complete_email(current_user, @order).deliver_now
       session.delete(:order_id)
     end
@@ -18,7 +18,6 @@ class CheckoutsController < ApplicationController
   end
 
   def update
-    @steps = steps
     @order = current_order
     case step
     when :address
@@ -94,6 +93,27 @@ class CheckoutsController < ApplicationController
       render_wizard
     end
   end 
+
+  def set_current_step
+    unless params[:skip]
+      steps.reverse.each do |stp|
+        jump_to(stp, skip: true) unless has_completed?(@order, stp)
+      end
+    end 
+  end
+
+  def has_completed?(order, step)
+    case step
+    when :address
+      order.get_address("billing").try(:persisted?)
+    when :delivery
+      order.delivery_id?
+    when :payment
+      order.credit_card.try(:persisted?)
+    when :confirm
+      order.in_queuen?
+    end
+  end
 
   def check_empty_cart
     redirect_to cart_path, alert: "Cart is empty" if current_order.order_items.count == 0 
