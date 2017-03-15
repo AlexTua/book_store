@@ -10,7 +10,7 @@
     .col-sm-3
       %h3.general-subtitle.mt-0 Payment Information
       %p.general-address
-        = "**** **** **** #{@order.credit_card.try(:card_number[-4..-1])}"
+        = "**** **** **** #{@order.credit_card.try(:card_number)[-4..-1]}"
         %br
         = @order.credit_card.try(:mm_yy)
   .visible-xs
