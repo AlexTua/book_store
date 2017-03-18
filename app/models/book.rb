@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
-  before_save { self.materials = materials.downcase.capitalize.gsub(/,(?![ ])/, ', ') }
+  before_save :normalize_materials
 
   has_and_belongs_to_many :category
   has_and_belongs_to_many :authors
@@ -29,4 +29,12 @@ class Book < ApplicationRecord
   def in_stock?
     quantity > 0
   end
+
+  private
+
+  def normalize_materials
+    if materials?
+      self.materials = materials.downcase.capitalize.gsub(/,(?![ ])/, ', ')
+    end
+  end  
 end
