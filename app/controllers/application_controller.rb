@@ -3,10 +3,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_order
 
   def current_order
-    unless session[:order_id].nil?
+    if session[:order_id]
+      return Order.new unless Order.exists?(session[:order_id])
       Order.find(session[:order_id])
-    else
-      Order.new
     end
   end
    
