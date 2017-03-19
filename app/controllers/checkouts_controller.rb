@@ -8,7 +8,6 @@ class CheckoutsController < ApplicationController
 
   def show
     @order = current_order
-    save_user_to_order unless @order.user
     set_current_step
     if step == :complete && params[:skip]
       CheckoutMailer.complete_email(current_user, @order).deliver_now
@@ -21,16 +20,12 @@ class CheckoutsController < ApplicationController
     @order = current_order
     case step
     when :address
-      if @order.get_address("billing").try(:persisted?)
-        update_addresses
-      else
-        create_addresses
-      end
+      CheckoutAddressService.new(@order, params).create_or_update_address
       render_addresses_forms
     when :delivery
       render_delivery_form
     when :payment
-      save_or_update_card
+      CheckoutPaymentService.new(@order, params).create_or_update_card
       render_wizard @order.credit_card
     when :confirm
       @order.confirm
@@ -39,43 +34,6 @@ class CheckoutsController < ApplicationController
   end
 
   private
-
-  def billing_address_params
-    params.require(:billing).permit(:first_name, :last_name, :address_name, :city, :zip, :country, :phone, :address_type)
-  end
-
-  def shipping_address_params
-    params.require(:shipping).permit(:first_name, :last_name, :address_name, :city, :zip, :country, :phone, :address_type)
-  end
-
-  def credit_card_params
-    params.require(:credit_card).permit(:card_number, :name_on_card, :mm_yy, :cvv)
-  end
-
-  def create_addresses
-    @order.addresses.new(billing_address_params)
-    @order.addresses.new(shipping_address_params) unless params[:billing][:address_type] == "both"
-  end
-
-  def update_addresses
-    @order.get_address("billing").update(billing_address_params)
-    unless params[:billing][:address_type] == "both"
-      if @order.addresses.size < 2
-        @order.addresses.new(shipping_address_params)
-      else
-        @order.get_address("shipping").update(shipping_address_params)
-      end
-    end
-  end
-
-  def save_or_update_card
-    if @order.credit_card.try(:persisted?)
-      @order.credit_card.update(credit_card_params)
-    else
-      @order.create_credit_card(credit_card_params)
-    end
-    @order.save
-  end
 
   def render_addresses_forms
     if @order.get_address("billing").errors.any? || @order.get_address("shipping").errors.any?
