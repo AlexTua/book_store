@@ -10,7 +10,7 @@ class Order < ApplicationRecord
   belongs_to :credit_card
 
   SORT_TITLES = {:all => "All", :in_progress => "In Progress", :in_queuen => "Waiting for processing",
-                 :in_delivery => "In Delivery", :delivered => "Delivered"}.freeze
+                 :in_delivery => "In Delivery", :delivered => "Delivered", :canceled => "Canceled"}.freeze
 
   default_scope { order(created_at: :desc) }
   scope :in_progress, -> { where(state: :in_progress) }
