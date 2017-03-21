@@ -1,20 +1,17 @@
 class OrderItemsController < ApplicationController
-  after_action :save_user_to_order
+  after_action :save_user_to_order, only: :create
+  after_action { current_order.save }
 
   def create
     @order = current_order
     @order.save unless @order.persisted?
     @order_item = @order.order_items.new(order_item_params)
-    if @order.valid?
-      @order.save 
-      session[:order_id] = @order.id
-    end
+    session[:order_id] = @order.id if @order.save
   end
 
   def update
-    @order = current_order
     @order_item = current_order.order_items.find(params[:id])
-    if @order_item.quantity > params[:order_item][:quantity].to_i  
+    if params[:operation] == "minus"
       update_order_item(1)
     elsif @order_item.book.in_stock?
       update_order_item(-1)
@@ -24,10 +21,8 @@ class OrderItemsController < ApplicationController
   end
 
   def destroy
-    @order = current_order
-    @order_item = @order.order_items.find(params[:id])
+    @order_item = current_order.order_items.find(params[:id])
     @order_item.destroy
-    @order.save
     redirect_to cart_path, notice: "Item deleted."
   end
 
@@ -40,8 +35,7 @@ class OrderItemsController < ApplicationController
   def update_order_item(int)
     @order_item.book.quantity += int
     @order_item.book.save
-    @order_item.update(order_item_params) 
-    @order.save
+    @order_item.update_attributes(quantity: params[:quantity]) 
     redirect_to cart_path, notice: "Item updated."
   end
 end
