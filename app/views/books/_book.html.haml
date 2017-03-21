@@ -8,7 +8,7 @@
     %p.in-grey-600.small= book_authors(@book)
     .row
       .col-xs-12.col-md-4
-        %p.h1.in-gold-500.mt-10= price_in_currency(@book)
+        %p.h1.in-gold-500.mt-10= price_in_currency(@book.price)
       = form_for current_order.order_items.build, remote: true do |f|
         = f.hidden_field :book_id, value: book.id
         .col-xs-5.col-md-3

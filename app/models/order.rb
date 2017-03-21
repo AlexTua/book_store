@@ -9,8 +9,8 @@ class Order < ApplicationRecord
   belongs_to :delivery
   belongs_to :credit_card
 
-  SORT_TITLES = {:all => "All", :in_progress => "In Progress", :in_queuen => "Waiting for processing",
-                 :in_delivery => "In Delivery", :delivered => "Delivered", :canceled => "Canceled"}.freeze
+  SORT_TITLES = {all: "All", in_progress: "In Progress", in_queuen: "Waiting for processing",
+                 in_delivery: "In Delivery", delivered: "Delivered", canceled: "Canceled"}.freeze
 
   default_scope { order(created_at: :desc) }
   scope :in_progress, -> { where(state: :in_progress) }
@@ -23,19 +23,19 @@ class Order < ApplicationRecord
     state :in_queuen, :in_delivery, :delivered, :canceled
 
     event :confirm do
-      transitions :from => :in_progress, :to => :in_queuen
+      transitions from: :in_progress, to: :in_queuen
     end
 
     event :start_delivery do
-      transitions :from => :in_queuen, :to => :in_delivery
+      transitions from: :in_queuen, to: :in_delivery
     end
 
     event :finish_delivery do
-      transitions :from => :in_delivery, :to => :delivered
+      transitions from: :in_delivery, to: :delivered
     end
 
     event :cancel do
-      transitions :from => [:in_queuen, :in_delivery, :in_progress], :to => :canceled
+      transitions from: [:in_queuen, :in_delivery, :in_progress], to: :canceled
     end
   end
 

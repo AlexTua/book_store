@@ -6,7 +6,7 @@
       %li{'data-target': "#slider", 'data-slide-to': "2"}
     .carousel-inner{role: "listbox"}
       - @latest_books.each_with_index do |book, index|
-        %div.item{:class => "#{"active" if index == 0}"}
+        %div.item{class: "#{"active" if index == 0}"}
           .row
             .col-sm-5
               .general-img-wrap

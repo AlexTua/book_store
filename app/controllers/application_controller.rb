@@ -3,8 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_order
 
   def current_order
-    return Order.new unless Order.exists?(session[:order_id])
-    Order.find(session[:order_id])
+    Order.find_or_initialize_by(id: session[:order_id])
   end
    
   private 

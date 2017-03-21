@@ -74,6 +74,6 @@ class CheckoutsController < ApplicationController
   end
 
   def check_empty_cart
-    redirect_to cart_path, alert: "Cart is empty" if current_order.order_items.count == 0 
+    redirect_to cart_path, alert: "Cart is empty" unless current_order.order_items.any? 
   end
 end

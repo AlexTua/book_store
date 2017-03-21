@@ -13,8 +13,8 @@ class Book < ApplicationRecord
   validates :quantity, numericality: { greater_than_or_equal_to: 0 }
   validates :year, numericality: { less_than_or_equal_to: Time.current.year }, allow_blank: true
 
-  SORT_TITLES = {:latest => "Newest first", :title_asc => "A - Z", :title_desc => "Z - A", 
-                :low_price => "Price: low to high", :high_price => "Price: high to low", :popular => "Populat first"}.freeze
+  SORT_TITLES = {latest: "Newest first", title_asc: "A - Z", title_desc: "Z - A", 
+                low_price: "Price: low to high", high_price: "Price: high to low", popular: "Populat first"}.freeze
 
   scope :latest, -> { order(created_at: :desc) }
   scope :title_asc, -> { order(title: :asc) }
