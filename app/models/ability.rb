@@ -4,6 +4,8 @@ class Ability
   def initialize(user)
     user ||= User.new 
     
+    can :read, [Category, Book]
+
     if user.admin?
       can :manage, :all
     elsif user.persisted?

@@ -23,6 +23,9 @@ class Order < ApplicationRecord
     state :in_queuen, :in_delivery, :delivered, :canceled
 
     event :confirm do
+      after do
+        CheckoutMailer.complete_email(user, self).deliver_now
+      end
       transitions from: :in_progress, to: :in_queuen
     end
 
@@ -45,9 +48,7 @@ class Order < ApplicationRecord
   end
 
   def get_address(type)
-    if addresses.first.try(:address_type) == "both"
-      return addresses.first
-    end
+    return addresses.first if addresses.first.try(:address_type) == "both"
     addresses.select { |address| address.address_type == type }[0]
   end
 

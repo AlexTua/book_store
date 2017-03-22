@@ -8,16 +8,14 @@ class CheckoutsController < ApplicationController
 
   def show
     @order = current_order
-    set_current_step
-    if step == :complete && params[:skip]
-      CheckoutMailer.complete_email(current_user, @order).deliver_now
-      session.delete(:order_id)
-    end
+    jump_to(CheckoutStepService.new(steps, params, @order).set_current_step, done: true)
+    session.delete(:order_id) if step == :complete && params[:done]
     render_wizard
   end
 
   def update
     @order = current_order
+
     case step
     when :address
       CheckoutAddressService.new(@order, params).create_or_update_address
@@ -51,27 +49,6 @@ class CheckoutsController < ApplicationController
       render_wizard
     end
   end 
-
-  def set_current_step
-    unless params[:skip]
-      steps.reverse.each do |stp|
-        jump_to(stp, skip: true) unless has_completed?(@order, stp)
-      end
-    end 
-  end
-
-  def has_completed?(order, step)
-    case step
-    when :address
-      order.get_address("billing").try(:persisted?)
-    when :delivery
-      order.delivery_id?
-    when :payment
-      order.credit_card.try(:persisted?)
-    when :confirm
-      order.in_queuen?
-    end
-  end
 
   def check_empty_cart
     redirect_to cart_path, alert: "Cart is empty" unless current_order.order_items.any? 

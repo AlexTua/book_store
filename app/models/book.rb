@@ -33,8 +33,7 @@ class Book < ApplicationRecord
   private
 
   def normalize_materials
-    if materials?
-      self.materials = materials.downcase.capitalize.gsub(/,(?![ ])/, ', ')
-    end
+    return unless materials?
+    self.materials = materials.downcase.capitalize.gsub(/,(?![ ])/, ', ')
   end  
 end
