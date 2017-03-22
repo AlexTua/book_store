@@ -10,7 +10,6 @@ class CheckoutStepService
     @steps.reverse.each do |stp|
       @step = stp unless has_completed?(stp) 
     end
-    Rails.logger.debug("My object: #{@step}")
     @step
   end
 

@@ -27,8 +27,4 @@ class Review < ApplicationRecord
   validates :content, length: { maximum: 500 }
   validates :title, length: { maximum: 80 }
   validates :rating, numericality: { greater_than: 0, less_than_or_equal_to: 5 }
-
-  def state
-    status
-  end
 end
