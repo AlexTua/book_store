@@ -25,4 +25,4 @@
     - @sorted_books.each_slice(4) do |book_line|
       = render partial: "books_inline", locals: {books: book_line}
     .text-center
-      = paginate @sorted_books
+      = paginate @sorted_books.object

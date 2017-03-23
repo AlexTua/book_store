@@ -32,6 +32,7 @@ gem 'rails_admin_aasm'
 gem 'wicked'
 gem 'rubocop', '~> 0.47.1', require: false
 gem 'fog'
+gem 'draper', '3.0.0.pre1'
 
 gem 'rails_12factor', group: :production
 

@@ -6,9 +6,10 @@ class OrderItem < ApplicationRecord
   belongs_to :book
 
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
-  validates :order_id, :book_id, presence: true
+  validates :book_id, presence: true
   validate :book_quantity, on: :create
   validate :order_item_uniq, on: :create
+  validate :order_present
 
   default_scope { order(created_at: :desc) }
   
@@ -26,6 +27,12 @@ class OrderItem < ApplicationRecord
   def increase_book_quantity
     book.quantity += quantity
     book.save
+  end
+
+  def order_present
+    if order.nil?
+      errors.add(:order, "is not a valid order.")
+    end
   end
 
   def book_quantity
