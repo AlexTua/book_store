@@ -16,7 +16,7 @@ RSpec.describe Address, type: :model do
     end
 
     context "When address belongs to user" do
-      let(:user_address) {Address.new(user_id: 1)}
+      let(:user_address) {build(:address, user_id: 1)}
 
       [:first_name, :last_name, :address_name, :city, 
       :zip, :country, :phone].each do |field|

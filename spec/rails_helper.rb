@@ -7,6 +7,7 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'aasm/rspec'
 require 'spec_helper'
+require 'cancan/matchers'
 
 ActiveRecord::Migration.maintain_test_schema!
 
