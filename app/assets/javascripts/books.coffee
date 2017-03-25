@@ -28,5 +28,11 @@ $(document).on "turbolinks:load", ->
       $('#short_desc').toggle(true)
       return
     return
+  $ ->
+    $('#add_button').click (event) ->
+      $('#add_button').addClass('disabled')
+      $('#buttons').toggle(false)
+      return
+    return
 
  

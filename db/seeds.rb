@@ -12,7 +12,7 @@ Coupon.create(code: "5adfq6", discount: 5)
 Coupon.create(code: "10dolx", discount: 10)
 
 materials = ["paper, brick, hardcove", "paper stocks, glossym ", "lace, slate, sand", "lace, man-made fibres"]
-dimensions = [{H: 5.5, W: 4.3, D: 0.1}, {H: 1.1, W: 7.3, D: 2.9}, {H: 4.7, W: 8.7, D: 0.9}, {H: 2.4, W: 1.3, D: 0.6},]
+dimensions = [{H: 5.5, W: 4.3, D: 0.1}, {H: 1.1, W: 7.3, D: 2.9}, {H: 4.7, W: 8.7, D: 0.9}, {H: 2.4, W: 1.3, D: 0.6}]
 Category.find_each(start: 2) do |category|
   rand(25..40).times do |n|
     book = Book.create(title: FFaker::Book.title, price: rand(1..99), 
