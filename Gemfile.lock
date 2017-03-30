@@ -68,6 +68,7 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    cliver (0.3.2)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)
@@ -270,6 +271,8 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -309,6 +312,11 @@ GEM
     parser (2.4.0.0)
       ast (~> 2.2)
     pg (0.20.0)
+    phantomjs (2.1.1.0)
+    poltergeist (1.14.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      websocket-driver (>= 0.2.0)
     powerpack (0.1.1)
     public_suffix (2.0.5)
     puma (3.8.1)
@@ -479,11 +487,14 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   kaminari
+  launchy
   listen (~> 3.0.5)
   mini_magick
   omniauth
   omniauth-facebook
   pg
+  phantomjs
+  poltergeist
   puma (~> 3.0)
   rails (~> 5.0.1)
   rails-controller-testing

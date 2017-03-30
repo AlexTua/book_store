@@ -44,9 +44,12 @@ end
 
 group :test do
   gem 'capybara'
+  gem "launchy"
   gem 'database_cleaner'
   gem 'shoulda-matchers'
   gem 'rails-controller-testing'
+  gem 'poltergeist'
+  gem 'phantomjs', :require => 'phantomjs/poltergeist'
 end
 
 group :development do
