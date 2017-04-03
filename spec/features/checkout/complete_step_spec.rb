@@ -17,7 +17,6 @@ feature 'Confirm step' do
     expect(page).to have_content("Thank You for your Order!")
     expect(page).to have_content("An order confirmation has been sent to #{@user.email}")
 
-
     expect(page).to have_content(address.first_name + " " + address.last_name)
     expect(page).to have_content(address.address_name)
     expect(page).to have_content(address.city)
