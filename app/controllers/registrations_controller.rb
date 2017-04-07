@@ -16,7 +16,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update_address
     if @address.update(address_params)
-      redirect_to edit_user_registration_path, notice: "Your account has been updated successfully."
+      redirect_to edit_user_registration_path, notice: I18n.t('flash.account_updated')
     else
       render "edit"
     end
@@ -25,7 +25,7 @@ class RegistrationsController < Devise::RegistrationsController
   def create_address
     @address = Address.new(address_params)
     if @address.save
-      redirect_to edit_user_registration_path, notice: "Your account has been updated successfully."
+      redirect_to edit_user_registration_path, notice: I18n.t('flash.account_updated')
     else
       render "edit"
     end

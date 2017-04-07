@@ -8,7 +8,6 @@ class User < ApplicationRecord
   has_many :orders
  
   def self.from_omniauth(auth)
-    Rails.logger.debug("My object: #{auth.inspect}")
     user = where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
