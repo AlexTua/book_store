@@ -19,7 +19,7 @@
             = link_to t('settings'), edit_user_registration_path
           - if can? :access, :rails_admin
             %li
-              = link_to t('admin'), rails_admin.dashboard_path
+              = link_to t('admin_panel'), rails_admin.dashboard_path
           %li.divider{role: "separator"}
           %li
             = link_to t('logout'), destroy_user_session_path, method: :delete
