@@ -17,5 +17,13 @@
 !/log/.keep
 !/tmp/.keep
 
+
 # Ignore Byebug command history file.
 .byebug_history
+.env
+Procfile
+# Ignore application configuration
+/config/application.yml
+
+# Ignore uploaded test images.
+/public/uploads
