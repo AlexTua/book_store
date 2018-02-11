@@ -18,12 +18,12 @@
       %table.general-summary-table
         %tr
           %td
-            %p.font-16= t('item_total')
+            %p.font-16= t('item_total') + ":"
           %td
-            %p.font-16= price_in_currency(@order.subtotal)
+            %p.font-16= shifting_price_to_currency(@order.subtotal)
         %tr
           %td
             %p.font-16= t('total') + ":"
           %td
-            %p.font-16= price_in_currency(@order.total_price)
+            %p.font-16= shifting_price_to_currency(@order.total_price)
       = submit_tag t('save_and_continue'), method: :put, class: "btn btn-default center-block mb-20"

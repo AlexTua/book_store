@@ -2,8 +2,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    user ||= User.new 
-    
+    user ||= User.new
+
     can :read, [Category, Book]
 
     if user.admin?

@@ -3,11 +3,11 @@ module ApplicationHelper
     Category.all
   end
 
-  def cart_size
+  def items_in_cart
     current_order.order_items.size
   end
 
-  def price_in_currency(price)
+  def shifting_price_to_currency(price)
     number_to_currency(price, unit: '€')
   end
 
@@ -17,5 +17,9 @@ module ApplicationHelper
     when 'alert' then 'danger'
     else key
     end
+  end
+
+  def track_number(order)
+    "R #{order.id}"
   end
 end

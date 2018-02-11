@@ -580,11 +580,17 @@ header {
 }
 
 input#cvv {
-  -webkit-text-security: disc; 
+  -webkit-text-security: disc;
 }
 
 .fa-minus {
-   &:hover {
+  &:hover {
+    color: black;
+  }
+}
+
+.fa-plus {
+  &:hover {
     color: black;
   }
 }
@@ -592,12 +598,6 @@ input#cvv {
 .not-active {
    pointer-events: none;
    cursor: default;
-}
-
-.fa-plus {
-   &:hover {
-    color: black;
-  }
 }
 
 #new_order_item {

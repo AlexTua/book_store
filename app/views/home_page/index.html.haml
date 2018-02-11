@@ -5,7 +5,7 @@
     .mb-res-50
       %p.in-grey-600= t('store_info')
     = link_to @category, class: "btn btn-default" do
-      = t('get_start') + @category.title
+      = t('get_start')
   .mb-35
     %h3= t('best_sellers') if @best_sellers.any?
     .row

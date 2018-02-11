@@ -8,7 +8,7 @@ class CheckoutStepService
   def set_current_step
     return if @params[:done]
     @steps.reverse.each do |stp|
-      @step = stp unless has_completed?(stp) 
+      @step = stp unless has_completed?(stp)
     end
     @step
   end
@@ -24,7 +24,7 @@ class CheckoutStepService
     when :payment
       @order.credit_card.try(:persisted?)
     when :confirm
-      @order.in_queuen?
+      @order.in_queue?
     end
   end
 end

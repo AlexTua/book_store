@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 feature 'Sign up' do
-  background { create(:category, title: Category::HOME_GATEGORY) }
+  background { create(:category, title: Category::MAIN_GATEGORY) }
   given(:new_user) { build(:user) }
 
-  scenario "should add new user" do
+  scenario 'should add new user' do
     expect {
       visit root_path
       click_link('Sign up', match: :first)
@@ -20,7 +20,7 @@ feature 'Sign up' do
     expect(current_path).to eq root_path
   end
 
-  scenario "invalid data" do
+  scenario 'invalid data' do
     expect {
       visit new_user_registration_path
       fill_in 'Enter your email', with: new_user.email

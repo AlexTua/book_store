@@ -34,24 +34,24 @@ class CheckoutsController < ApplicationController
   private
 
   def render_addresses_forms
-    if @order.get_address("billing").errors.any? || @order.get_address("shipping").errors.any?
-      render_wizard 
+    if @order.get_address('billing').errors.any? || @order.get_address('shipping').errors.any?
+      render_wizard
     else
       render_wizard @order
     end
-  end 
+  end
 
   def render_delivery_form
     if params[:delivery]
       @order.delivery_id = params[:delivery]
       render_wizard @order
     else
-      flash.now[:alert] = I18n.t("flash.delivery_alert")
+      flash.now[:alert] = I18n.t('flash.delivery_alert')
       render_wizard
     end
-  end 
+  end
 
   def check_empty_cart
-    redirect_to cart_path, alert: I18n.t("flash.empty_cart") unless current_order.order_items.any? 
+    redirect_to cart_path, alert: I18n.t('flash.empty_cart') unless current_order.order_items.any?
   end
 end

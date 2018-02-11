@@ -1,10 +1,6 @@
-$footer-sticky-height: 170px;
-
-html,
-body {
-  height: 100%;
+img {
+  max-width: 100%;
 }
-
 .col-pic {
   width: 11.5%;
 }
@@ -29,11 +25,12 @@ body {
 .col-half {
   width: 50%;
 }
-.general-main-container {
-  min-height: calc(100vh - #{$footer-sticky-height});
-}
 .general-main-wrap {
   margin-bottom: 60px;
+}
+.general-container-xs {
+  padding-right: 10px;
+  padding-left: 10px;
 }
 .general-img-wrap {
   max-width: 175px;
@@ -49,14 +46,13 @@ body {
 }
 .general-thumbnail {
   padding: 70% 0;
-  position: relative;
 }
 .general-thumbnail .general-thumbnail-img {
   max-width: 60%;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -80%);
 }
 .general-thumb-link-wrap {
   position: absolute;
@@ -66,13 +62,13 @@ body {
   white-space: nowrap;
 }
 .general-nav-mail {
-  font-size: 12px;
+  font-size: $font-size-small;
   color: $gold-500;
   text-align: center;
   margin-bottom: 15px;
 }
 .general-nav-number {
-  font-size: 12px;
+  font-size: $font-size-small;
   color: white;
   text-align: center;
   margin-bottom: 25px;
@@ -105,13 +101,6 @@ body {
 .general-position {
   margin-top: 10px;
   margin-bottom: 30px;
-}
-.general-item-info {
-  font-size: 14px;
-  color: $grey-600;
-  word-break: break-word;
-  margin-left: 20px;
-  margin-bottom: 20px;
 }
 .general-img-wrap-table {
   max-width: 140px;
@@ -150,6 +139,7 @@ body {
   font-weight: 300;
 }
 .general-form-help {
+  font-size: 18px;
   color: $grey-600;
   position: absolute;
   top: 35px;
@@ -212,8 +202,11 @@ body {
   color: $gold-500;
   font-weight: 300;
 }
+.general-message-wrap {
+  padding: 30px 0 25px;
+}
 .general-message-verified {
-  font-size: 12px;
+  font-size: $font-size-small;
   color: $grey-350;
   line-height: 21px;
   float: right;
@@ -223,17 +216,12 @@ body {
 .general-message-name {
   font-size: $font-size-base;
   color: $gold-500;
-  font-weight: 400;
   margin-bottom: 10px;
 }
 .general-message-date {
   font-size: $font-size-base;
   color: $grey-600;
   float: right;
-}
-.general-title {
-  font-size: $font-size-large;
-  word-break: break-word;
 }
 
 
@@ -311,11 +299,6 @@ body {
   .general-order-dropdown {
     width: 240px;
     float: right;
-  }
-  .general-carousel-indicators {
-    width: 7%;
-    left: 90%;
-    margin-left: 0;
   }
   .mt-res-0 {
     margin-top: 0;

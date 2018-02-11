@@ -1,7 +1,7 @@
 class OrderItemsController < ApplicationController
   after_action :save_user_to_order, only: :create
   after_action { current_order.save }
-  before_action :find_order_by_id, only: [:update, :destroy]
+  load_resource through: :current_order, only: [:update, :destroy]
 
   def create
     @order = current_order
@@ -10,7 +10,7 @@ class OrderItemsController < ApplicationController
   end
 
   def update
-    if params[:operation] == "minus" && @order_item
+    if params[:operation] == 'minus' && @order_item
       update_order_item(1)
     elsif @order_item.book.in_stock?
       update_order_item(-1)
@@ -24,7 +24,7 @@ class OrderItemsController < ApplicationController
       @order_item.destroy
       redirect_to cart_path, notice: I18n.t('flash.deleted')
     else
-      redirect_to cart_path, alert: I18n.t('flash.was_not_found')    
+      redirect_to cart_path, alert: I18n.t('flash.was_not_found')
     end
   end
 
@@ -34,14 +34,10 @@ class OrderItemsController < ApplicationController
     params.require(:order_item).permit(:quantity, :book_id)
   end
 
-  def update_order_item(int)
-    @order_item.book.quantity += int
+  def update_order_item(amount)
+    @order_item.book.quantity += amount
     @order_item.quantity = params[:quantity]
     @order_item.save
     redirect_to cart_path, notice: I18n.t('flash.updated')
-  end
-
-  def find_order_by_id
-    @order_item = current_order.order_items.find_by_id(params[:id])
   end
 end

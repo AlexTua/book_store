@@ -5,7 +5,7 @@ class CheckoutAddressService
   end
 
   def create_or_update_address
-    if @order.get_address("billing").try(:persisted?)
+    if @order.get_address('billing').try(:persisted?)
       update_addresses
     else
       create_addresses
@@ -28,12 +28,12 @@ class CheckoutAddressService
   end
 
   def update_addresses
-    @order.get_address("billing").update(billing_address_params)
-    return if @params[:billing][:address_type] == "both"
+    @order.get_address('billing').update(billing_address_params)
+    return if @params[:billing][:address_type] == 'both'
     if @order.addresses.size < 2
       @order.addresses.new(shipping_address_params)
     else
-      @order.get_address("shipping").update(shipping_address_params)
+      @order.get_address('shipping').update(shipping_address_params)
     end
   end
 end

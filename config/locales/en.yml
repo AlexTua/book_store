@@ -12,8 +12,8 @@ en:
   best_sellers: "Best Sellers"
   get_start: "Get Started with "
   welcome: "Welcome to our amazing Bookstore!"
-  store_info: "We pore through hundreds of new books 
-               each month and select the five best we 
+  store_info: "We pore through hundreds of new books
+               each month and select the five best we
                can find to share with our members."
   forgot: "Forgot your password?"
   instruction: "We'll email you instructions on how to reset it"
@@ -41,7 +41,7 @@ en:
   year: "Year of publication"
   dimensions: "Dimensions"
   materials: "Materials"
-  quantity: "Quantity"
+  quantity: Quantity
   product: "Product"
   price: "Price"
   subtotal: "Subtotal"

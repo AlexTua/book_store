@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :review do
-    book
-    content "Review text"
-    title "title"
+    association :book
+    content FFaker::CheesyLingo.sentence
+    title 'title'
     rating 4
-    status "approved"
+    status 'approved'
   end
 end
