@@ -17,9 +17,9 @@
                 %p.lead.desc= truncate(book.description, length: 400)
                 %p.in-grey-600.small= book.authors_list
                 .general-align.pt-20
-                  = form_for current_order.order_items.build, remote: true do |f| 
+                  = form_for current_order.order_items.build, remote: true do |f|
                     = f.hidden_field :book_id, value: book.id
-                    = f.hidden_field :quantity, value: 1  
+                    = f.hidden_field :quantity, value: 1
                     = f.button t('buy_now'), class: "btn btn-primary #{"disabled" unless book.in_stock?}"
     %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
       %span.icon-prev{'aria-hidden': "true"}

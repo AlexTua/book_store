@@ -16,8 +16,8 @@ module CheckoutsHelper
   end
 
   def use_billing_address?
-    address = @order.get_address("billing")
-    address.address_type == "both" if address
+    address = @order.get_address('billing')
+    address.address_type == 'both' if address
   end
 
   def checked_delivery?(delivery_id)

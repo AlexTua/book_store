@@ -26,7 +26,7 @@
     .divider-lg-bottom
     %p.in-gold-500.font-18.mb-25.pt-20= t('remove_account')
     .general-settings-btn
-      = button_to t('remove_account'), registration_path(resource_name), data: { confirm: t('sure?') }, method: :delete, class: "btn btn-default mb-20", id: "removeBtn", disabled: "disabled"
+      = button_to t('remove_account'), registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-default mb-20", id: "removeBtn", disabled: "disabled"
     .form-group.checkbox.general-settings-checkbox
       %label.font-weight-light.pl-0
         %input.checkbox-input{type: "checkbox", hidden: "true", onchange: "document.getElementById('removeBtn').disabled = !this.checked;"}

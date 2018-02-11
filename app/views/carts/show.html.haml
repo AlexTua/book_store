@@ -20,17 +20,17 @@
                 %td
                   %p.font-16= t('subtotal') + ":"
                 %td
-                  %p.font-16= price_in_currency(@order.subtotal)
+                  %p.font-16= shifting_price_to_currency(@order.subtotal)
               %tr
                 %td
                   %p.font-16= t('coupon') + ":"
                 %td
-                  %p.font-16= price_in_currency(@order.coupon)
+                  %p.font-16= shifting_price_to_currency(@order.coupon)
               %tr
                 %td
                   %strong.font-18= t('total') + ":"
                 %td
-                  %strong.font-18= price_in_currency(@order.total_price)
+                  %strong.font-18= shifting_price_to_currency(@order.total_price)
             = button_to t('checkout'), checkouts_path, method: :get, class: "btn btn-default mb-20 visible-xs-inline-block"
     = button_to t('checkout'), checkouts_path, method: :get, class: "btn btn-default mb-20 hidden-xs center-block"
   - else

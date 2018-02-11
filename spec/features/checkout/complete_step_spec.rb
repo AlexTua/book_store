@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 feature 'Confirm step' do
-  let!(:address) { create(:address, address_type: "both") }
+  let!(:address) { create(:address, address_type: 'both') }
   let!(:book) { create(:book) }
-  let!(:order_item) { create(:order_item, book: book)}
+  let!(:order_item) { create(:order_item, book: book) }
 
   background do
     @user = create(:user)
@@ -13,8 +13,8 @@ feature 'Confirm step' do
     visit checkouts_path(id: :complete, done: true)
   end
 
-  scenario "show complete order info" do
-    expect(page).to have_content("Thank You for your Order!")
+  scenario 'show complete order info' do
+    expect(page).to have_content('Thank You for your Order!')
     expect(page).to have_content("An order confirmation has been sent to #{@user.email}")
 
     expect(page).to have_content(address.first_name + " " + address.last_name)
@@ -27,13 +27,13 @@ feature 'Confirm step' do
     expect(page).to have_content("€#{book.price}")
     expect(page).to have_content(book.description.slice(0, 137))
 
-    expect(page).to have_content(@order.created_at.strftime("%m/%d/%Y"))
-    expect(page).to have_content("Order ##{@order.track_number}")
+    expect(page).to have_content(@order.created_at.strftime('%m/%d/%Y'))
+    expect(page).to have_content("Order #R#{@order.id}")
   end
 
-  scenario "redirect to catalog" do
+  scenario 'redirect to catalog' do
     category = create(:category)
-    click_link("Go to Shop")
+    click_link('Go to Shop')
     expect(current_path).to eq(category_path(category.id))
   end
 end

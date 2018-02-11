@@ -10,20 +10,20 @@ feature 'Delivery step' do
     visit checkouts_path(id: :delivery, done: true)
   end
 
-  scenario "show delivery info" do
+  scenario 'show delivery info' do
     expect(page).to have_content(@delivery.name)
     expect(page).to have_content("#{@delivery.min_day } to #{@delivery.max_day } days")
     expect(page).to have_content("€#{@delivery.price}")
   end
 
-  scenario "show flash when do not choose delivery" do
-    click_button("Save and Continue")
-    expect(page).to have_content("You have to choose delivery.")
+  scenario 'show flash when do not choose delivery' do
+    click_button('Save and Continue')
+    expect(page).to have_content('You have to choose delivery.')
   end
 
-  scenario "save delivery", js: true do
+  scenario 'save delivery', js: true do
     find('.radio-text', match: :first).click
-    click_button("Save and Continue")
+    click_button('Save and Continue')
     expect(@order.reload.delivery_id).to eq(@delivery.id)
   end
 end

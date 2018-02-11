@@ -7,46 +7,46 @@ RSpec.describe OrderItem, type: :model do
     @order_item = OrderItem.create(quantity: 1, book_id: @book.id, order_id: @order.id)
   end
 
-  describe "Validations" do
+  describe 'Validations' do
     [:quantity, :book_id].each do |field|
       it { expect(@order_item).to validate_presence_of(field) }
     end
     it { expect(@order_item).to validate_numericality_of(:quantity).is_greater_than(0) }
 
-    it "Will not create if book count is not enough" do
+    it 'Will not create if book count is not enough' do
       @order_item = OrderItem.new(quantity: 4, book_id: @book.id, order_id: @order.id)
       expect(@order_item.save).to eq(false)
     end
 
-    it "Will not create if item alredy exist" do
-      item = OrderItem.create(quantity: 1, book_id: @book.id, order_id: @order.id) 
+    it 'Will not create if item alredy exist' do
+      item = OrderItem.create(quantity: 1, book_id: @book.id, order_id: @order.id)
       expect(item.save).to eq(false)
     end
   end
 
-  describe "Associations" do
+  describe 'Associations' do
     it { should belong_to(:order) }
     it { should belong_to(:book) }
   end
 
-  describe "Callbacks" do
+  describe 'Callbacks' do
+    let(:book) { create(:book, quantity: 3, price: 2, title: "aaaa")}
     before(:each) do
       @order = Order.create
-      @book = Book.create(quantity: 3, price: 2, title: "aaaa")
-      @order_item = OrderItem.new(quantity: 2, book_id: @book.id, order_id: @order.id)
+      @order_item = OrderItem.new(quantity: 2, book_id: book.id, order_id: @order.id)
     end
 
-    it "decrease book quantity after create" do
+    it 'decrease book quantity after create' do
       expect { @order_item.save }.to change { @order_item.book.quantity }.by(-2)
     end
 
-    it "increase book quantity after destroy" do
+    it 'increase book quantity after destroy' do
       expect { @order_item.destroy }.to change { @order_item.book.quantity }.by(2)
     end
   end
 
-  describe "#total_price" do
-    it "must retrun book price * order item quantity" do
+  describe '#total_price' do
+    it 'must retrun book price * order item quantity' do
       expect(@order_item.total_price).to eq(4)
     end
   end

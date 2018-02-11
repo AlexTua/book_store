@@ -9,8 +9,8 @@ class ApplicationController < ActionController::Base
   def current_order
     Order.find_or_initialize_by(id: session[:order_id])
   end
-   
-  private 
+
+  private
 
   def save_user_to_order
     @order = current_order

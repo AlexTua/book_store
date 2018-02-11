@@ -12,7 +12,7 @@ class OrderItem < ApplicationRecord
   validate :order_present
 
   default_scope { order(created_at: :desc) }
-  
+
   def total_price
     book.price * quantity
   end
@@ -31,16 +31,16 @@ class OrderItem < ApplicationRecord
 
   def order_present
     return if order
-    errors.add(:order, "is not a valid order.")
+    errors.add(:order, 'is not a valid order.')
   end
 
   def book_quantity
     return unless book.quantity < quantity
-    errors.add(:order_item, "is out of stock")
+    errors.add(:order_item, 'is out of stock.')
   end
 
   def order_item_uniq
-    return unless order.order_items.find_by_book_id(book.id)
-    errors.add(:order_item, "is already in a cart")
+    return unless order.order_items.find_by(book_id: book.id)
+    errors.add(:order_item, 'is already in cart.')
   end
 end

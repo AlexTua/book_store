@@ -2,15 +2,15 @@ RailsAdmin.config do |config|
 
   ### Popular gems integration
 
-
+  ## == Devise ==
   config.authenticate_with do
     warden.authenticate! scope: :user
   end
   config.current_user_method(&:current_user)
 
-  config.authorize_with :cancan 
+  ## == Cancan ==
+  config.authorize_with :cancan
 
-  
   ## == Pundit ==
   # config.authorize_with :pundit
 
@@ -21,7 +21,7 @@ RailsAdmin.config do |config|
 
   ## == Gravatar integration ==
   ## To disable Gravatar integration in Navigation Bar set to false
-  # config.show_gravatar true
+  # config.show_gravatar = true
 
   config.actions do
     dashboard                     # mandatory
@@ -35,7 +35,7 @@ RailsAdmin.config do |config|
     edit
     delete
     show_in_app do
-      except ['OrderItem', 'Order']
+      except ['OrderIdem', 'Order']
     end
     state
     ## With an audit adapter, you can add:
@@ -83,7 +83,7 @@ RailsAdmin.config do |config|
     end
 
     state({
-    states: {in_delivery: 'btn-warning', delivered: 'btn-success', canceled: 'btn-danger', in_progress: 'btn-warning', in_queuen: 'btn-warning'},
+    states: {in_delivery: 'btn-warning', delivered: 'btn-success', canceled: 'btn-danger', in_progress: 'btn-warning', in_queue: 'btn-warning'},
     events: {start_delivery: 'btn-success', finish_delivery: 'btn-success', cancel: 'btn-danger'}
     })
   end

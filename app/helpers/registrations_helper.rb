@@ -1,6 +1,6 @@
 module RegistrationsHelper
-  def is_tab?(tab)
-    return true if !params.has_key?(:tab) && tab == "address"
+  def tab?(tab)
+    return true if !params.has_key?(:tab) && tab == 'address'
     params[:tab] == tab
   end
 
@@ -20,7 +20,7 @@ module RegistrationsHelper
     address[field] if address
   end
 
-  private 
+  private
 
   def correct_type?(type)
     @address.try(:address_type) == type

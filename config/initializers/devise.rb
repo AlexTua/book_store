@@ -6,13 +6,13 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '0985df0c79f7027e6cfe1a4125f02fe0afb80269cdec9f352ad33b468c90914986ba176f0532121dc99e863a2c097a5f2a34b90e99a85c594b87dee43554bf9d'
-
+  # config.secret_key = '6103101006fba32a75c193a98ecaea4224c1256c7c40ad1b24d5003cb5486c28ac28176d88cfd9a4d288a220e2ed81658591935a2e6604cf9a84b70181182b73'
+  config.secret_key = '55dda8deaf54fc616143ead174aa70ed00e5d7e33e9e326bf4ce78477e708d33ac8095e329f80f65abe8eb8581f3d041da3aec086616fb76c262decadee4c097'
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'greedy.rttax@gmail.com '
+  config.mailer_sender = 'botan.supp@gmail.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -108,9 +108,12 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'c19d238b91fef1bdfe0358521653519f8ee259370419aa26c4364bcf179eb12a54f8461f952fb48efe3e38f364b66492e68e11277ed0127b822b4e66178f6d4a'
+  # config.pepper = '7aa9cd3c53817792e02aae1d47632bb919f7902a17f732f0aef5b3f00934de09363df4745ee82935139b9083dca0d134084e252a47544bc8f1212539147b5976'
 
-  # Send a notification email when the user's password is changed
+  # Send a notification to the original email when the user's email is changed.
+  # config.send_email_changed_notification = false
+
+  # Send a notification email when the user's password is changed.
   # config.send_password_change_notification = false
 
   # ==> Configuration for :confirmable
@@ -243,7 +246,7 @@ Devise.setup do |config|
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
-  config.omniauth :facebook, ENV['APP_ID'], ENV['APP_SECRET'], scope: 'email', info_fields: 'email,name,first_name,last_name'
+  config.omniauth :facebook, ENV["APP_ID"], ENV["APP_SECRET"], scope: 'email', info_fields: 'email,name,first_name,last_name'
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
